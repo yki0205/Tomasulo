@@ -1,0 +1,15 @@
+ld x2,0(x1)       
+addi x2,x2,1      
+sd x2,0(x1)       
+addi x1,x1,8      
+bne x3,x1,Loop
+ld x2,0(x1)       
+addi x2,x2,1      
+sd x2,0(x1)       
+addi x1,x1,8      
+bne x3,x1,Loop
+ld x2,0(x1)       
+addi x2,x2,1      
+sd x2,0(x1)       
+addi x1,x1,8      
+bne x3,x1,Loop

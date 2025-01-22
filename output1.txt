@@ -1,0 +1,819 @@
+clock1 :
+reorderbuffer entry-----------------------------
+
+entry 1: Yes	, fld f6,32(x2) 	, Decode 	, f6 	,None 	 
+entry2 : 	, 	, 	, 	, 	, 	, 	,	 
+entry3 : 	, 	, 	, 	, 	, 	, 	,	 
+entry4 : 	, 	, 	, 	, 	, 	, 	,	 
+entry5 : 	, 	, 	, 	, 	, 	, 	,	 
+entry6 : 	, 	, 	, 	, 	, 	, 	,	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: No , 	, 	, 	, 	, 	, 	;
+Add2	: No , 	, 	, 	, 	, 	, 	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: No , 	, 	, 	, 	, 	, 	;
+Mult2	: No , 	, 	, 	, 	, 	, 	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:   ; f7:   ; f8:   ; f9:   ; f10:   ;
+Busy   : f0:No ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:No ; f7:No ; f8:No ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock2 :
+reorderbuffer entry-----------------------------
+
+entry 1: Yes	, fld f6,32(x2) 	, Issue 	, f6 	,None 	 
+entry 2: Yes	, fld f2,44(x3) 	, Decode 	, f2 	,None 	 
+entry3 : 	, 	, 	, 	, 	, 	, 	,	 
+entry4 : 	, 	, 	, 	, 	, 	, 	,	 
+entry5 : 	, 	, 	, 	, 	, 	, 	,	 
+entry6 : 	, 	, 	, 	, 	, 	, 	,	 
+
+
+reservation station-----------------------------
+
+Load1	: Yes , fld	, 32	, Regs[x2]	, 	, 	, #1	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: No , 	, 	, 	, 	, 	, 	;
+Add2	: No , 	, 	, 	, 	, 	, 	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: No , 	, 	, 	, 	, 	, 	;
+Mult2	: No , 	, 	, 	, 	, 	, 	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:1   ; f7:   ; f8:   ; f9:   ; f10:   ;
+Busy   : f0:No ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:No ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock3 :
+reorderbuffer entry-----------------------------
+
+entry 1: Yes	, fld f6,32(x2) 	, Execute 	, f6 	,None 	 
+entry 2: Yes	, fld f2,44(x3) 	, Issue 	, f2 	,None 	 
+entry 3: Yes	, fmul.d f0,f2,f4 	, Decode 	, f0 	,None 	 
+entry4 : 	, 	, 	, 	, 	, 	, 	,	 
+entry5 : 	, 	, 	, 	, 	, 	, 	,	 
+entry6 : 	, 	, 	, 	, 	, 	, 	,	 
+
+
+reservation station-----------------------------
+
+Load1	: Yes , fld	, 32	, Regs[x2]	, 	, 	, #1	;
+Load2	: Yes , fld	, 44	, Regs[x3]	, 	, 	, #2	;
+Add1	: No , 	, 	, 	, 	, 	, 	;
+Add2	: No , 	, 	, 	, 	, 	, 	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: No , 	, 	, 	, 	, 	, 	;
+Mult2	: No , 	, 	, 	, 	, 	, 	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:   ; f1:   ; f2:2   ; f3:   ; f4:   ; f5:   ; f6:1   ; f7:   ; f8:   ; f9:   ; f10:   ;
+Busy   : f0:No ; f1:No ; f2:Yes ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:No ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock4 :
+reorderbuffer entry-----------------------------
+
+entry 1: Yes	, fld f6,32(x2) 	, Execute 	, f6 	,None 	 
+entry 2: Yes	, fld f2,44(x3) 	, Execute 	, f2 	,None 	 
+entry 3: Yes	, fmul.d f0,f2,f4 	, Issue 	, f0 	,None 	 
+entry 4: Yes	, fsub.d f8,f2,f6 	, Decode 	, f8 	,None 	 
+entry5 : 	, 	, 	, 	, 	, 	, 	,	 
+entry6 : 	, 	, 	, 	, 	, 	, 	,	 
+
+
+reservation station-----------------------------
+
+Load1	: Yes , fld	, 32	, Regs[x2]	, 	, 	, #1	;
+Load2	: Yes , fld	, 44	, Regs[x3]	, 	, 	, #2	;
+Add1	: No , 	, 	, 	, 	, 	, 	;
+Add2	: No , 	, 	, 	, 	, 	, 	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: Yes , fmul.d	, 	, Regs[f4]	, #2	, 	, #3	;
+Mult2	: No , 	, 	, 	, 	, 	, 	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:3   ; f1:   ; f2:2   ; f3:   ; f4:   ; f5:   ; f6:1   ; f7:   ; f8:   ; f9:   ; f10:   ;
+Busy   : f0:Yes ; f1:No ; f2:Yes ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:No ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock5 :
+reorderbuffer entry-----------------------------
+
+entry 1: Yes	, fld f6,32(x2) 	, Write result 	, f6 	,Mem[32+Regs[x2]] 	 
+entry 2: Yes	, fld f2,44(x3) 	, Execute 	, f2 	,None 	 
+entry 3: Yes	, fmul.d f0,f2,f4 	, Issue 	, f0 	,None 	 
+entry 4: Yes	, fsub.d f8,f2,f6 	, Issue 	, f8 	,None 	 
+entry 5: Yes	, fdiv.d f0,f0,f6 	, Decode 	, f0 	,None 	 
+entry6 : 	, 	, 	, 	, 	, 	, 	,	 
+
+
+reservation station-----------------------------
+
+Load1	: Yes , fld	, 32	, Regs[x2]	, 	, 	, #1	;
+Load2	: Yes , fld	, 44	, Regs[x3]	, 	, 	, #2	;
+Add1	: Yes , fsub.d	, 	, Mem[32+Regs[x2]]	, #2	, 	, #4	;
+Add2	: No , 	, 	, 	, 	, 	, 	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: Yes , fmul.d	, 	, Regs[f4]	, #2	, 	, #3	;
+Mult2	: No , 	, 	, 	, 	, 	, 	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:3   ; f1:   ; f2:2   ; f3:   ; f4:   ; f5:   ; f6:1   ; f7:   ; f8:4   ; f9:   ; f10:   ;
+Busy   : f0:Yes ; f1:No ; f2:Yes ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:Yes ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock6 :
+reorderbuffer entry-----------------------------
+
+entry 1: Yes	, fld f6,32(x2) 	, Commit 	, f6 	,Mem[32+Regs[x2]] 	 
+entry 2: Yes	, fld f2,44(x3) 	, Write result 	, f2 	,Mem[44+Regs[x3]] 	 
+entry 3: Yes	, fmul.d f0,f2,f4 	, Execute 	, f0 	,None 	 
+entry 4: Yes	, fsub.d f8,f2,f6 	, Execute 	, f8 	,None 	 
+entry 5: Yes	, fdiv.d f0,f0,f6 	, Issue 	, f0 	,None 	 
+entry 6: Yes	, fadd.d f6,f8,f2 	, Decode 	, f6 	,None 	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: Yes , fld	, 44	, Regs[x3]	, 	, 	, #2	;
+Add1	: Yes , fsub.d	, Mem[44+Regs[x3]]	, Mem[32+Regs[x2]]	, 	, 	, #4	;
+Add2	: No , 	, 	, 	, 	, 	, 	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: Yes , fmul.d	, Mem[44+Regs[x3]]	, Regs[f4]	, 	, 	, #3	;
+Mult2	: Yes , fdiv.d	, 	, Regs[f6]	, #3	, 	, #5	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:5   ; f1:   ; f2:2   ; f3:   ; f4:   ; f5:   ; f6:   ; f7:   ; f8:4   ; f9:   ; f10:   ;
+Busy   : f0:Yes ; f1:No ; f2:Yes ; f3:No ; f4:No ; f5:No ; f6:No ; f7:No ; f8:Yes ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock7 :
+reorderbuffer entry-----------------------------
+
+entry1 : 	, 	, 	, 	, 	, 	, 	,	 
+entry 2: Yes	, fld f2,44(x3) 	, Commit 	, f2 	,Mem[44+Regs[x3]] 	 
+entry 3: Yes	, fmul.d f0,f2,f4 	, Execute 	, f0 	,None 	 
+entry 4: Yes	, fsub.d f8,f2,f6 	, Execute 	, f8 	,None 	 
+entry 5: Yes	, fdiv.d f0,f0,f6 	, Issue 	, f0 	,None 	 
+entry 6: Yes	, fadd.d f6,f8,f2 	, Issue 	, f6 	,None 	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: Yes , fsub.d	, Mem[44+Regs[x3]]	, Mem[32+Regs[x2]]	, 	, 	, #4	;
+Add2	: Yes , fadd.d	, 	, Regs[f2]	, #4	, 	, #6	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: Yes , fmul.d	, Mem[44+Regs[x3]]	, Regs[f4]	, 	, 	, #3	;
+Mult2	: Yes , fdiv.d	, 	, Regs[f6]	, #3	, 	, #5	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:5   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:6   ; f7:   ; f8:4   ; f9:   ; f10:   ;
+Busy   : f0:Yes ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:Yes ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock8 :
+reorderbuffer entry-----------------------------
+
+entry1 : 	, 	, 	, 	, 	, 	, 	,	 
+entry2 : 	, 	, 	, 	, 	, 	, 	,	 
+entry 3: Yes	, fmul.d f0,f2,f4 	, Execute 	, f0 	,None 	 
+entry 4: Yes	, fsub.d f8,f2,f6 	, Execute 	, f8 	,None 	 
+entry 5: Yes	, fdiv.d f0,f0,f6 	, Issue 	, f0 	,None 	 
+entry 6: Yes	, fadd.d f6,f8,f2 	, Issue 	, f6 	,None 	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: Yes , fsub.d	, Mem[44+Regs[x3]]	, Mem[32+Regs[x2]]	, 	, 	, #4	;
+Add2	: Yes , fadd.d	, 	, Regs[f2]	, #4	, 	, #6	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: Yes , fmul.d	, Mem[44+Regs[x3]]	, Regs[f4]	, 	, 	, #3	;
+Mult2	: Yes , fdiv.d	, 	, Regs[f6]	, #3	, 	, #5	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:5   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:6   ; f7:   ; f8:4   ; f9:   ; f10:   ;
+Busy   : f0:Yes ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:Yes ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock9 :
+reorderbuffer entry-----------------------------
+
+entry1 : 	, 	, 	, 	, 	, 	, 	,	 
+entry2 : 	, 	, 	, 	, 	, 	, 	,	 
+entry 3: Yes	, fmul.d f0,f2,f4 	, Execute 	, f0 	,None 	 
+entry 4: Yes	, fsub.d f8,f2,f6 	, Write result 	, f8 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]] 	 
+entry 5: Yes	, fdiv.d f0,f0,f6 	, Issue 	, f0 	,None 	 
+entry 6: Yes	, fadd.d f6,f8,f2 	, Execute 	, f6 	,None 	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: Yes , fsub.d	, Mem[44+Regs[x3]]	, Mem[32+Regs[x2]]	, 	, 	, #4	;
+Add2	: Yes , fadd.d	, Mem[44+Regs[x3]]-Mem[32+Regs[x2]]	, Regs[f2]	, 	, 	, #6	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: Yes , fmul.d	, Mem[44+Regs[x3]]	, Regs[f4]	, 	, 	, #3	;
+Mult2	: Yes , fdiv.d	, 	, Regs[f6]	, #3	, 	, #5	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:5   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:6   ; f7:   ; f8:4   ; f9:   ; f10:   ;
+Busy   : f0:Yes ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:Yes ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock10 :
+reorderbuffer entry-----------------------------
+
+entry1 : 	, 	, 	, 	, 	, 	, 	,	 
+entry2 : 	, 	, 	, 	, 	, 	, 	,	 
+entry 3: Yes	, fmul.d f0,f2,f4 	, Execute 	, f0 	,None 	 
+entry 4: Yes	, fsub.d f8,f2,f6 	, Write result 	, f8 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]] 	 
+entry 5: Yes	, fdiv.d f0,f0,f6 	, Issue 	, f0 	,None 	 
+entry 6: Yes	, fadd.d f6,f8,f2 	, Execute 	, f6 	,None 	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: Yes , fsub.d	, Mem[44+Regs[x3]]	, Mem[32+Regs[x2]]	, 	, 	, #4	;
+Add2	: Yes , fadd.d	, Mem[44+Regs[x3]]-Mem[32+Regs[x2]]	, Regs[f2]	, 	, 	, #6	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: Yes , fmul.d	, Mem[44+Regs[x3]]	, Regs[f4]	, 	, 	, #3	;
+Mult2	: Yes , fdiv.d	, 	, Regs[f6]	, #3	, 	, #5	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:5   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:6   ; f7:   ; f8:4   ; f9:   ; f10:   ;
+Busy   : f0:Yes ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:Yes ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock11 :
+reorderbuffer entry-----------------------------
+
+entry1 : 	, 	, 	, 	, 	, 	, 	,	 
+entry2 : 	, 	, 	, 	, 	, 	, 	,	 
+entry 3: Yes	, fmul.d f0,f2,f4 	, Execute 	, f0 	,None 	 
+entry 4: Yes	, fsub.d f8,f2,f6 	, Write result 	, f8 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]] 	 
+entry 5: Yes	, fdiv.d f0,f0,f6 	, Issue 	, f0 	,None 	 
+entry 6: Yes	, fadd.d f6,f8,f2 	, Execute 	, f6 	,None 	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: Yes , fsub.d	, Mem[44+Regs[x3]]	, Mem[32+Regs[x2]]	, 	, 	, #4	;
+Add2	: Yes , fadd.d	, Mem[44+Regs[x3]]-Mem[32+Regs[x2]]	, Regs[f2]	, 	, 	, #6	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: Yes , fmul.d	, Mem[44+Regs[x3]]	, Regs[f4]	, 	, 	, #3	;
+Mult2	: Yes , fdiv.d	, 	, Regs[f6]	, #3	, 	, #5	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:5   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:6   ; f7:   ; f8:4   ; f9:   ; f10:   ;
+Busy   : f0:Yes ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:Yes ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock12 :
+reorderbuffer entry-----------------------------
+
+entry1 : 	, 	, 	, 	, 	, 	, 	,	 
+entry2 : 	, 	, 	, 	, 	, 	, 	,	 
+entry 3: Yes	, fmul.d f0,f2,f4 	, Execute 	, f0 	,None 	 
+entry 4: Yes	, fsub.d f8,f2,f6 	, Write result 	, f8 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]] 	 
+entry 5: Yes	, fdiv.d f0,f0,f6 	, Issue 	, f0 	,None 	 
+entry 6: Yes	, fadd.d f6,f8,f2 	, Write result 	, f6 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]]+Regs[f2] 	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: Yes , fsub.d	, Mem[44+Regs[x3]]	, Mem[32+Regs[x2]]	, 	, 	, #4	;
+Add2	: Yes , fadd.d	, Mem[44+Regs[x3]]-Mem[32+Regs[x2]]	, Regs[f2]	, 	, 	, #6	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: Yes , fmul.d	, Mem[44+Regs[x3]]	, Regs[f4]	, 	, 	, #3	;
+Mult2	: Yes , fdiv.d	, 	, Regs[f6]	, #3	, 	, #5	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:5   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:6   ; f7:   ; f8:4   ; f9:   ; f10:   ;
+Busy   : f0:Yes ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:Yes ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock13 :
+reorderbuffer entry-----------------------------
+
+entry1 : 	, 	, 	, 	, 	, 	, 	,	 
+entry2 : 	, 	, 	, 	, 	, 	, 	,	 
+entry 3: Yes	, fmul.d f0,f2,f4 	, Write result 	, f0 	,Mem[44+Regs[x3]]*Regs[f4] 	 
+entry 4: Yes	, fsub.d f8,f2,f6 	, Write result 	, f8 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]] 	 
+entry 5: Yes	, fdiv.d f0,f0,f6 	, Execute 	, f0 	,None 	 
+entry 6: Yes	, fadd.d f6,f8,f2 	, Write result 	, f6 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]]+Regs[f2] 	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: Yes , fsub.d	, Mem[44+Regs[x3]]	, Mem[32+Regs[x2]]	, 	, 	, #4	;
+Add2	: Yes , fadd.d	, Mem[44+Regs[x3]]-Mem[32+Regs[x2]]	, Regs[f2]	, 	, 	, #6	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: Yes , fmul.d	, Mem[44+Regs[x3]]	, Regs[f4]	, 	, 	, #3	;
+Mult2	: Yes , fdiv.d	, Mem[44+Regs[x3]]*Regs[f4]	, Regs[f6]	, 	, 	, #5	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:5   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:6   ; f7:   ; f8:4   ; f9:   ; f10:   ;
+Busy   : f0:Yes ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:Yes ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock14 :
+reorderbuffer entry-----------------------------
+
+entry1 : 	, 	, 	, 	, 	, 	, 	,	 
+entry2 : 	, 	, 	, 	, 	, 	, 	,	 
+entry 3: Yes	, fmul.d f0,f2,f4 	, Commit 	, f0 	,Mem[44+Regs[x3]]*Regs[f4] 	 
+entry 4: Yes	, fsub.d f8,f2,f6 	, Write result 	, f8 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]] 	 
+entry 5: Yes	, fdiv.d f0,f0,f6 	, Execute 	, f0 	,None 	 
+entry 6: Yes	, fadd.d f6,f8,f2 	, Write result 	, f6 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]]+Regs[f2] 	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: Yes , fsub.d	, Mem[44+Regs[x3]]	, Mem[32+Regs[x2]]	, 	, 	, #4	;
+Add2	: Yes , fadd.d	, Mem[44+Regs[x3]]-Mem[32+Regs[x2]]	, Regs[f2]	, 	, 	, #6	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: No , 	, 	, 	, 	, 	, 	;
+Mult2	: Yes , fdiv.d	, Mem[44+Regs[x3]]*Regs[f4]	, Regs[f6]	, 	, 	, #5	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:5   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:6   ; f7:   ; f8:4   ; f9:   ; f10:   ;
+Busy   : f0:Yes ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:Yes ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock15 :
+reorderbuffer entry-----------------------------
+
+entry1 : 	, 	, 	, 	, 	, 	, 	,	 
+entry2 : 	, 	, 	, 	, 	, 	, 	,	 
+entry3 : 	, 	, 	, 	, 	, 	, 	,	 
+entry 4: Yes	, fsub.d f8,f2,f6 	, Commit 	, f8 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]] 	 
+entry 5: Yes	, fdiv.d f0,f0,f6 	, Execute 	, f0 	,None 	 
+entry 6: Yes	, fadd.d f6,f8,f2 	, Write result 	, f6 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]]+Regs[f2] 	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: No , 	, 	, 	, 	, 	, 	;
+Add2	: Yes , fadd.d	, Mem[44+Regs[x3]]-Mem[32+Regs[x2]]	, Regs[f2]	, 	, 	, #6	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: No , 	, 	, 	, 	, 	, 	;
+Mult2	: Yes , fdiv.d	, Mem[44+Regs[x3]]*Regs[f4]	, Regs[f6]	, 	, 	, #5	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:5   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:6   ; f7:   ; f8:   ; f9:   ; f10:   ;
+Busy   : f0:Yes ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:No ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock16 :
+reorderbuffer entry-----------------------------
+
+entry1 : 	, 	, 	, 	, 	, 	, 	,	 
+entry2 : 	, 	, 	, 	, 	, 	, 	,	 
+entry3 : 	, 	, 	, 	, 	, 	, 	,	 
+entry4 : 	, 	, 	, 	, 	, 	, 	,	 
+entry 5: Yes	, fdiv.d f0,f0,f6 	, Execute 	, f0 	,None 	 
+entry 6: Yes	, fadd.d f6,f8,f2 	, Write result 	, f6 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]]+Regs[f2] 	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: No , 	, 	, 	, 	, 	, 	;
+Add2	: Yes , fadd.d	, Mem[44+Regs[x3]]-Mem[32+Regs[x2]]	, Regs[f2]	, 	, 	, #6	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: No , 	, 	, 	, 	, 	, 	;
+Mult2	: Yes , fdiv.d	, Mem[44+Regs[x3]]*Regs[f4]	, Regs[f6]	, 	, 	, #5	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:5   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:6   ; f7:   ; f8:   ; f9:   ; f10:   ;
+Busy   : f0:Yes ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:No ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock17 :
+reorderbuffer entry-----------------------------
+
+entry1 : 	, 	, 	, 	, 	, 	, 	,	 
+entry2 : 	, 	, 	, 	, 	, 	, 	,	 
+entry3 : 	, 	, 	, 	, 	, 	, 	,	 
+entry4 : 	, 	, 	, 	, 	, 	, 	,	 
+entry 5: Yes	, fdiv.d f0,f0,f6 	, Execute 	, f0 	,None 	 
+entry 6: Yes	, fadd.d f6,f8,f2 	, Write result 	, f6 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]]+Regs[f2] 	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: No , 	, 	, 	, 	, 	, 	;
+Add2	: Yes , fadd.d	, Mem[44+Regs[x3]]-Mem[32+Regs[x2]]	, Regs[f2]	, 	, 	, #6	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: No , 	, 	, 	, 	, 	, 	;
+Mult2	: Yes , fdiv.d	, Mem[44+Regs[x3]]*Regs[f4]	, Regs[f6]	, 	, 	, #5	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:5   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:6   ; f7:   ; f8:   ; f9:   ; f10:   ;
+Busy   : f0:Yes ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:No ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock18 :
+reorderbuffer entry-----------------------------
+
+entry1 : 	, 	, 	, 	, 	, 	, 	,	 
+entry2 : 	, 	, 	, 	, 	, 	, 	,	 
+entry3 : 	, 	, 	, 	, 	, 	, 	,	 
+entry4 : 	, 	, 	, 	, 	, 	, 	,	 
+entry 5: Yes	, fdiv.d f0,f0,f6 	, Execute 	, f0 	,None 	 
+entry 6: Yes	, fadd.d f6,f8,f2 	, Write result 	, f6 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]]+Regs[f2] 	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: No , 	, 	, 	, 	, 	, 	;
+Add2	: Yes , fadd.d	, Mem[44+Regs[x3]]-Mem[32+Regs[x2]]	, Regs[f2]	, 	, 	, #6	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: No , 	, 	, 	, 	, 	, 	;
+Mult2	: Yes , fdiv.d	, Mem[44+Regs[x3]]*Regs[f4]	, Regs[f6]	, 	, 	, #5	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:5   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:6   ; f7:   ; f8:   ; f9:   ; f10:   ;
+Busy   : f0:Yes ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:No ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock19 :
+reorderbuffer entry-----------------------------
+
+entry1 : 	, 	, 	, 	, 	, 	, 	,	 
+entry2 : 	, 	, 	, 	, 	, 	, 	,	 
+entry3 : 	, 	, 	, 	, 	, 	, 	,	 
+entry4 : 	, 	, 	, 	, 	, 	, 	,	 
+entry 5: Yes	, fdiv.d f0,f0,f6 	, Execute 	, f0 	,None 	 
+entry 6: Yes	, fadd.d f6,f8,f2 	, Write result 	, f6 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]]+Regs[f2] 	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: No , 	, 	, 	, 	, 	, 	;
+Add2	: Yes , fadd.d	, Mem[44+Regs[x3]]-Mem[32+Regs[x2]]	, Regs[f2]	, 	, 	, #6	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: No , 	, 	, 	, 	, 	, 	;
+Mult2	: Yes , fdiv.d	, Mem[44+Regs[x3]]*Regs[f4]	, Regs[f6]	, 	, 	, #5	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:5   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:6   ; f7:   ; f8:   ; f9:   ; f10:   ;
+Busy   : f0:Yes ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:No ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock20 :
+reorderbuffer entry-----------------------------
+
+entry1 : 	, 	, 	, 	, 	, 	, 	,	 
+entry2 : 	, 	, 	, 	, 	, 	, 	,	 
+entry3 : 	, 	, 	, 	, 	, 	, 	,	 
+entry4 : 	, 	, 	, 	, 	, 	, 	,	 
+entry 5: Yes	, fdiv.d f0,f0,f6 	, Execute 	, f0 	,None 	 
+entry 6: Yes	, fadd.d f6,f8,f2 	, Write result 	, f6 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]]+Regs[f2] 	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: No , 	, 	, 	, 	, 	, 	;
+Add2	: Yes , fadd.d	, Mem[44+Regs[x3]]-Mem[32+Regs[x2]]	, Regs[f2]	, 	, 	, #6	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: No , 	, 	, 	, 	, 	, 	;
+Mult2	: Yes , fdiv.d	, Mem[44+Regs[x3]]*Regs[f4]	, Regs[f6]	, 	, 	, #5	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:5   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:6   ; f7:   ; f8:   ; f9:   ; f10:   ;
+Busy   : f0:Yes ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:No ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock21 :
+reorderbuffer entry-----------------------------
+
+entry1 : 	, 	, 	, 	, 	, 	, 	,	 
+entry2 : 	, 	, 	, 	, 	, 	, 	,	 
+entry3 : 	, 	, 	, 	, 	, 	, 	,	 
+entry4 : 	, 	, 	, 	, 	, 	, 	,	 
+entry 5: Yes	, fdiv.d f0,f0,f6 	, Execute 	, f0 	,None 	 
+entry 6: Yes	, fadd.d f6,f8,f2 	, Write result 	, f6 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]]+Regs[f2] 	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: No , 	, 	, 	, 	, 	, 	;
+Add2	: Yes , fadd.d	, Mem[44+Regs[x3]]-Mem[32+Regs[x2]]	, Regs[f2]	, 	, 	, #6	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: No , 	, 	, 	, 	, 	, 	;
+Mult2	: Yes , fdiv.d	, Mem[44+Regs[x3]]*Regs[f4]	, Regs[f6]	, 	, 	, #5	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:5   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:6   ; f7:   ; f8:   ; f9:   ; f10:   ;
+Busy   : f0:Yes ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:No ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock22 :
+reorderbuffer entry-----------------------------
+
+entry1 : 	, 	, 	, 	, 	, 	, 	,	 
+entry2 : 	, 	, 	, 	, 	, 	, 	,	 
+entry3 : 	, 	, 	, 	, 	, 	, 	,	 
+entry4 : 	, 	, 	, 	, 	, 	, 	,	 
+entry 5: Yes	, fdiv.d f0,f0,f6 	, Execute 	, f0 	,None 	 
+entry 6: Yes	, fadd.d f6,f8,f2 	, Write result 	, f6 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]]+Regs[f2] 	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: No , 	, 	, 	, 	, 	, 	;
+Add2	: Yes , fadd.d	, Mem[44+Regs[x3]]-Mem[32+Regs[x2]]	, Regs[f2]	, 	, 	, #6	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: No , 	, 	, 	, 	, 	, 	;
+Mult2	: Yes , fdiv.d	, Mem[44+Regs[x3]]*Regs[f4]	, Regs[f6]	, 	, 	, #5	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:5   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:6   ; f7:   ; f8:   ; f9:   ; f10:   ;
+Busy   : f0:Yes ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:No ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock23 :
+reorderbuffer entry-----------------------------
+
+entry1 : 	, 	, 	, 	, 	, 	, 	,	 
+entry2 : 	, 	, 	, 	, 	, 	, 	,	 
+entry3 : 	, 	, 	, 	, 	, 	, 	,	 
+entry4 : 	, 	, 	, 	, 	, 	, 	,	 
+entry 5: Yes	, fdiv.d f0,f0,f6 	, Execute 	, f0 	,None 	 
+entry 6: Yes	, fadd.d f6,f8,f2 	, Write result 	, f6 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]]+Regs[f2] 	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: No , 	, 	, 	, 	, 	, 	;
+Add2	: Yes , fadd.d	, Mem[44+Regs[x3]]-Mem[32+Regs[x2]]	, Regs[f2]	, 	, 	, #6	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: No , 	, 	, 	, 	, 	, 	;
+Mult2	: Yes , fdiv.d	, Mem[44+Regs[x3]]*Regs[f4]	, Regs[f6]	, 	, 	, #5	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:5   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:6   ; f7:   ; f8:   ; f9:   ; f10:   ;
+Busy   : f0:Yes ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:No ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock24 :
+reorderbuffer entry-----------------------------
+
+entry1 : 	, 	, 	, 	, 	, 	, 	,	 
+entry2 : 	, 	, 	, 	, 	, 	, 	,	 
+entry3 : 	, 	, 	, 	, 	, 	, 	,	 
+entry4 : 	, 	, 	, 	, 	, 	, 	,	 
+entry 5: Yes	, fdiv.d f0,f0,f6 	, Execute 	, f0 	,None 	 
+entry 6: Yes	, fadd.d f6,f8,f2 	, Write result 	, f6 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]]+Regs[f2] 	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: No , 	, 	, 	, 	, 	, 	;
+Add2	: Yes , fadd.d	, Mem[44+Regs[x3]]-Mem[32+Regs[x2]]	, Regs[f2]	, 	, 	, #6	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: No , 	, 	, 	, 	, 	, 	;
+Mult2	: Yes , fdiv.d	, Mem[44+Regs[x3]]*Regs[f4]	, Regs[f6]	, 	, 	, #5	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:5   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:6   ; f7:   ; f8:   ; f9:   ; f10:   ;
+Busy   : f0:Yes ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:No ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock25 :
+reorderbuffer entry-----------------------------
+
+entry1 : 	, 	, 	, 	, 	, 	, 	,	 
+entry2 : 	, 	, 	, 	, 	, 	, 	,	 
+entry3 : 	, 	, 	, 	, 	, 	, 	,	 
+entry4 : 	, 	, 	, 	, 	, 	, 	,	 
+entry 5: Yes	, fdiv.d f0,f0,f6 	, Execute 	, f0 	,None 	 
+entry 6: Yes	, fadd.d f6,f8,f2 	, Write result 	, f6 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]]+Regs[f2] 	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: No , 	, 	, 	, 	, 	, 	;
+Add2	: Yes , fadd.d	, Mem[44+Regs[x3]]-Mem[32+Regs[x2]]	, Regs[f2]	, 	, 	, #6	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: No , 	, 	, 	, 	, 	, 	;
+Mult2	: Yes , fdiv.d	, Mem[44+Regs[x3]]*Regs[f4]	, Regs[f6]	, 	, 	, #5	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:5   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:6   ; f7:   ; f8:   ; f9:   ; f10:   ;
+Busy   : f0:Yes ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:No ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock26 :
+reorderbuffer entry-----------------------------
+
+entry1 : 	, 	, 	, 	, 	, 	, 	,	 
+entry2 : 	, 	, 	, 	, 	, 	, 	,	 
+entry3 : 	, 	, 	, 	, 	, 	, 	,	 
+entry4 : 	, 	, 	, 	, 	, 	, 	,	 
+entry 5: Yes	, fdiv.d f0,f0,f6 	, Write result 	, f0 	,Mem[44+Regs[x3]]*Regs[f4]/Regs[f6] 	 
+entry 6: Yes	, fadd.d f6,f8,f2 	, Write result 	, f6 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]]+Regs[f2] 	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: No , 	, 	, 	, 	, 	, 	;
+Add2	: Yes , fadd.d	, Mem[44+Regs[x3]]-Mem[32+Regs[x2]]	, Regs[f2]	, 	, 	, #6	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: No , 	, 	, 	, 	, 	, 	;
+Mult2	: Yes , fdiv.d	, Mem[44+Regs[x3]]*Regs[f4]	, Regs[f6]	, 	, 	, #5	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:5   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:6   ; f7:   ; f8:   ; f9:   ; f10:   ;
+Busy   : f0:Yes ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:No ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock27 :
+reorderbuffer entry-----------------------------
+
+entry1 : 	, 	, 	, 	, 	, 	, 	,	 
+entry2 : 	, 	, 	, 	, 	, 	, 	,	 
+entry3 : 	, 	, 	, 	, 	, 	, 	,	 
+entry4 : 	, 	, 	, 	, 	, 	, 	,	 
+entry 5: Yes	, fdiv.d f0,f0,f6 	, Commit 	, f0 	,Mem[44+Regs[x3]]*Regs[f4]/Regs[f6] 	 
+entry 6: Yes	, fadd.d f6,f8,f2 	, Write result 	, f6 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]]+Regs[f2] 	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: No , 	, 	, 	, 	, 	, 	;
+Add2	: Yes , fadd.d	, Mem[44+Regs[x3]]-Mem[32+Regs[x2]]	, Regs[f2]	, 	, 	, #6	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: No , 	, 	, 	, 	, 	, 	;
+Mult2	: No , 	, 	, 	, 	, 	, 	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:6   ; f7:   ; f8:   ; f9:   ; f10:   ;
+Busy   : f0:No ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:Yes ; f7:No ; f8:No ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock28 :
+reorderbuffer entry-----------------------------
+
+entry1 : 	, 	, 	, 	, 	, 	, 	,	 
+entry2 : 	, 	, 	, 	, 	, 	, 	,	 
+entry3 : 	, 	, 	, 	, 	, 	, 	,	 
+entry4 : 	, 	, 	, 	, 	, 	, 	,	 
+entry5 : 	, 	, 	, 	, 	, 	, 	,	 
+entry 6: Yes	, fadd.d f6,f8,f2 	, Commit 	, f6 	,Mem[44+Regs[x3]]-Mem[32+Regs[x2]]+Regs[f2] 	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: No , 	, 	, 	, 	, 	, 	;
+Add2	: No , 	, 	, 	, 	, 	, 	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: No , 	, 	, 	, 	, 	, 	;
+Mult2	: No , 	, 	, 	, 	, 	, 	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:   ; f7:   ; f8:   ; f9:   ; f10:   ;
+Busy   : f0:No ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:No ; f7:No ; f8:No ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+clock29 :
+reorderbuffer entry-----------------------------
+
+entry1 : 	, 	, 	, 	, 	, 	, 	,	 
+entry2 : 	, 	, 	, 	, 	, 	, 	,	 
+entry3 : 	, 	, 	, 	, 	, 	, 	,	 
+entry4 : 	, 	, 	, 	, 	, 	, 	,	 
+entry5 : 	, 	, 	, 	, 	, 	, 	,	 
+entry6 : 	, 	, 	, 	, 	, 	, 	,	 
+
+
+reservation station-----------------------------
+
+Load1	: No , 	, 	, 	, 	, 	, 	;
+Load2	: No , 	, 	, 	, 	, 	, 	;
+Add1	: No , 	, 	, 	, 	, 	, 	;
+Add2	: No , 	, 	, 	, 	, 	, 	;
+Add3	: No , 	, 	, 	, 	, 	, 	;
+Mult1	: No , 	, 	, 	, 	, 	, 	;
+Mult2	: No , 	, 	, 	, 	, 	, 	;
+
+
+registers-----------------------------
+
+reorderbuffer_entry: f0:   ; f1:   ; f2:   ; f3:   ; f4:   ; f5:   ; f6:   ; f7:   ; f8:   ; f9:   ; f10:   ;
+Busy   : f0:No ; f1:No ; f2:No ; f3:No ; f4:No ; f5:No ; f6:No ; f7:No ; f8:No ; f9:No ; f10:No ;
+-----------------------------------------------------------------------------------
+
+指令 	 , 发射指令的时钟周期	, 执⾏指令的时钟周期 	, 访问存储器的时钟周期	, 写CDB的时钟周期	
+fld f6,32(x2) 	: 2 	, 4 	, 5 	, 6
+fld f2,44(x3) 	: 3 	, 5 	, 6 	, 7
+fmul.d f0,f2,f4 	: 4 	, 12 	, 13 	, 14
+fsub.d f8,f2,f6 	: 5 	, 8 	, 9 	, 15
+fdiv.d f0,f0,f6 	: 6 	, 25 	, 26 	, 27
+fadd.d f6,f8,f2 	: 7 	, 11 	, 12 	, 28
